@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//curso laravel-10
+Route::get('/supports/create', [SupportController::class, 'create'])->name('supports-create');
+Route::get('/supports', [SupportController::class, 'index'])->name('supports-index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +25,4 @@ Route::get('/', function () {
 Route::get('/teste', function (){
     return view('exemplo');
 });
+
