@@ -7,9 +7,24 @@
     <title>HOME</title>
 </head>
 <body>
-    <h1>Listagem dos Suportes</h1>
+    <h1>Listagem das dúvidas</h1>
+    {{ $xss}}
 
-    <a href="{{ route('supports-create') }}">Criar Dúvida</a>
+    <table>
+        <thead>
+            <th>assuntos</th>
+            <th>descrição</th>
+        </thead>
+        <tbody>
+            @foreach ($side as $item)
+                <tr>
+                    <td> {{ $item->subject }} </td>
+                    <td> {{ $item->description }} </td>
+                </tr>
+            @endforeach
+        </tbody>
+        <a href="{{ route('supports-create') }}">Criar Dúvida</a>
 
+    </table>
 </body>
 </html>

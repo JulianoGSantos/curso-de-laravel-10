@@ -11,8 +11,6 @@ class Doubt extends Model
 
     protected $table = 'doubts';
 
-    public $timestamps = false;
-
     public $fillable = [
         'subject',
         'description'
