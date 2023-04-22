@@ -19,6 +19,9 @@
                 <tr>
                     <td> {{ $item->subject }} </td>
                     <td> {{ $item->description }} </td>
+                    <td>
+                        <a href=" {{ route('supports-show', $item->id) }} "> detalhes </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

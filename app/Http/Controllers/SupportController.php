@@ -7,7 +7,8 @@ use App\Models\Doubt;
 
 class SupportController extends Controller
 {
-    public function index(Doubt $sub){
+    public function index(Doubt $sub)
+    {
         $subs = $sub->all();
 
         return view('index', compact('subs'));
@@ -30,11 +31,13 @@ class SupportController extends Controller
         return redirect('/supports');
     }
 
-    public function show(string|int $id)
+    public function show(string|int $id, Doubt $sub)
         {
+        $subs = $sub->all();
+        
         if(!$side = Doubt::find($id) ){
             return back();
         }
-        dd($side);
+        return view('show', compact('subs'));
     }
 }
