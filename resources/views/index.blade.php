@@ -8,7 +8,6 @@
 </head>
 <body>
     <h1>Listagem das dúvidas</h1>
-    {{ $xss}}
 
     <table>
         <thead>
@@ -16,7 +15,7 @@
             <th>descrição</th>
         </thead>
         <tbody>
-            @foreach ($side as $item)
+            @foreach ($subs as $item)
                 <tr>
                     <td> {{ $item->subject }} </td>
                     <td> {{ $item->description }} </td>

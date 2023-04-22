@@ -7,10 +7,10 @@ use App\Models\Doubt;
 
 class SupportController extends Controller
 {
-    public function index(){
-        return view('index', [
-            'side' => $side
-        ]);
+    public function index(Doubt $sub){
+        $subs = $sub->all();
+
+        return view('index', compact('subs'));
     }
 
     public function create(){
