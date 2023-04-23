@@ -1,4 +1,5 @@
-<h1>Detalhes da dúvida  </h1>
+($subs as $item);
+<h1>Detalhes da dúvida  {{ $item->subject}}</h1>
 
 @foreach ($subs as $item)
     <ul>
