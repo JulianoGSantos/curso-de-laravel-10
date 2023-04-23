@@ -33,11 +33,12 @@ class SupportController extends Controller
 
     public function show(string|int $id, Doubt $sub)
         {
-        $subs = $sub->all();
         
         if(!$side = Doubt::find($id) ){
             return back();
         }
+
+        $subs = $sub->all();
         return view('show', compact('subs'));
     }
 }

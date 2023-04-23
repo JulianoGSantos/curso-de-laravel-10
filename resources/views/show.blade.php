@@ -1,6 +1,8 @@
 <h1>Detalhes da dúvida  </h1>
 
-<ul>
-    <li>Assunto: {{ $subs->subject }}</li>
-    <li>Descrição: {{ $subs->description }}</li>
-</ul>
+@foreach ($subs as $item)
+    <ul>
+        <li> {{ $item->subject }} </li>
+        <li> {{ $item->description }} </li>
+    </ul>
+@endforeach
