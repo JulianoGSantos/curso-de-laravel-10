@@ -15,12 +15,12 @@
             <th>descrição</th>
         </thead>
         <tbody>
-            @foreach ($subs as $item)
+            @foreach ($subs as $side)
                 <tr>
-                    <td> {{ $item->subject }} </td>
-                    <td> {{ $item->description }} </td>
+                    <td> {{ $side->subject }} </td>
+                    <td> {{ $side->description }} </td>
                     <td>
-                        <a href=" {{ route('supports-show', $item->id) }} "> detalhes </a>
+                        <a href=" {{ route('supports-show', $side->id) }} "> detalhes </a>
                     </td>
                 </tr>
             @endforeach

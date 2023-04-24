@@ -31,14 +31,19 @@ class SupportController extends Controller
         return redirect('/supports');
     }
 
-    public function show(string|int $id, Doubt $sub)
+    public function show(string|int $id)
         {
-        
-        if(!$side = Doubt::find($id) ){
+        if(!$side = Doubt::find($id)){
             return back();
         }
+        return view('show', compact('side'));
+    }
 
-        $subs = $sub->all();
-        return view('show', compact('subs'));
+    public function edit(Doubt $side, string|int $id)
+    {
+        if($side = Doubt::find($id)){
+            return back();
+        }
+        return view('supports.edit', compact('side'));
     }
 }

@@ -1,9 +1,6 @@
-($subs as $item);
-<h1>Detalhes da dúvida  {{ $item->subject}}</h1>
+<h1>Detalhes da dúvida  {{ $side->id }}</h1>
 
-@foreach ($subs as $item)
-    <ul>
-        <li> {{ $item->subject }} </li>
-        <li> {{ $item->description }} </li>
-    </ul>
-@endforeach
+<ul>
+    <li>Assunto: {{ $side->subject}} </li>
+    <li>Descrição: {{$side->description}} </li>
+</ul>
