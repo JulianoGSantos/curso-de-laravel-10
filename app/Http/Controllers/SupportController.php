@@ -44,6 +44,6 @@ class SupportController extends Controller
         if($side = Doubt::find($id)){
             return back();
         }
-        return view('supports.edit', compact('side'));
+        return view('supports.edit',  compact('side'));
     }
 }

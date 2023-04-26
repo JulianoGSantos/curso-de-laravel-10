@@ -13,6 +13,7 @@
         <thead>
             <th>assuntos</th>
             <th>descrição</th>
+            
         </thead>
         <tbody>
             @foreach ($subs as $side)
