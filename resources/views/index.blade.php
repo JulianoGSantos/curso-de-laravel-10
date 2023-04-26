@@ -22,7 +22,7 @@
                     <td> {{ $side->description }} </td>
                     <td>
                         <a href=" {{ route('supports-show', $side->id) }} "> detalhes </a>
-                        <a href="{{ route('supports-edit') }}"></a>
+                        <a href="{{ route('supports-edit', $side->id) }}"> editar </a>
                     </td>
                 </tr>
             @endforeach

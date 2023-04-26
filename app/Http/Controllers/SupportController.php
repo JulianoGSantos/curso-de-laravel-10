@@ -45,10 +45,10 @@ class SupportController extends Controller
         if($side = Doubt::find($id)){
             return back();
         }
-        return view('supports.edit', compact('side'));
+        return view('supports-edit', compact('side'));
     }
 
-    public function update(DoubtRequest $request,Doubt $side, string $id)
+    public function update(Doubt $request, $side, string $id)
     {
         if($side = Doubt::find($id)){
             return back();
