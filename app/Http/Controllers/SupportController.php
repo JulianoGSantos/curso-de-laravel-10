@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
+use GuzzleHttp\Psr7\Request;
 
 class SupportController extends Controller
 {
@@ -44,6 +45,18 @@ class SupportController extends Controller
         if($side = Doubt::find($id)){
             return back();
         }
-        return view('supports.edit',  compact('side'));
+        return view('supports.edit', compact('side'));
+    }
+
+    public function update(DoubtRequest $request,Doubt $side, string $id)
+    {
+        if($side = Doubt::find($id)){
+            return back();
+        }
+        $side->update($request->only([
+            'subject','description'
+        ]));
+
+        return redirect()->route('supports-index');
     }
 }

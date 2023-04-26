@@ -22,12 +22,12 @@
                     <td> {{ $side->description }} </td>
                     <td>
                         <a href=" {{ route('supports-show', $side->id) }} "> detalhes </a>
+                        <a href="{{ route('supports-edit') }}"></a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
         <a href="{{ route('supports-create') }}">Criar Dúvida</a>
-
     </table>
 </body>
 </html>
