@@ -59,4 +59,13 @@ class SupportController extends Controller
 
         return redirect()->route('supports-index');
     }
+    public function destroy(Request $side, string|int $id)
+    {
+        if($side = Doubt::find($id)){
+            return back();
+        }
+        $side->delete();
+
+        return redirect()->route('supports-index');
+    }
 }
