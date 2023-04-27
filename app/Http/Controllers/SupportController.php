@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
@@ -45,10 +45,10 @@ class SupportController extends Controller
         if($side = Doubt::find($id)){
             return back();
         }
-        return view('supports-edit', compact('side'));
+        return view('edit', compact('side'));
     }
 
-    public function update(Doubt $request, $side, string $id)
+    public function update(Request $request, Doubt $side, string $id)
     {
         if($side = Doubt::find($id)){
             return back();

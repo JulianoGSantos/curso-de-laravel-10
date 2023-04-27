@@ -9,8 +9,9 @@
 <body>
     <form action=" {{ route ('supports-update', $side->id) }} " method="POST">
         @csrf
+        @method('PUT') 
         <h1>Dúvida {{ $side->id }} </h1>
-
+        
         
         <input type="text" placeholder="Assunto" name="subject" id="subject" value=" {{ $side->subject }} ">
         <textarea placeholder="Descrição" name="description" id="description" cols="30" rows="10"> {{ $side->description }} </textarea>
