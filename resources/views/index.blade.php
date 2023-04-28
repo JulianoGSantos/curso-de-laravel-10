@@ -11,6 +11,7 @@
 
     <table>
         <thead>
+            <th>id</th>
             <th>assuntos</th>
             <th>descrição</th>
             
@@ -18,6 +19,7 @@
         <tbody>
             @foreach ($subs as $side)
                 <tr>
+                    <td> {{ $side->id }} </td>
                     <td> {{ $side->subject }} </td>
                     <td> {{ $side->description }} </td>
                     <td>

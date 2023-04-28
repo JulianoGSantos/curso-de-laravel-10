@@ -42,15 +42,15 @@ class SupportController extends Controller
 
     public function edit(Doubt $side, string|int $id)
     {
-        if($side = Doubt::find($id)){
+        if(!$side = Doubt::find($id)){
             return back();
         }
         return view('edit', compact('side'));
     }
 
-    public function update(Request $request, Doubt $side, string $id)
+    public function update(Doubt $side, Doubt $request,string $id)
     {
-        if($side = Doubt::find($id)){
+        if(!$side = Doubt::find($id)){
             return back();
         }
         $side->update($request->only([
@@ -59,9 +59,9 @@ class SupportController extends Controller
 
         return redirect()->route('supports-index');
     }
-    public function destroy(Request $side, string|int $id)
+    public function destroy(Doubt $side, string|int $id)
     {
-        if($side = Doubt::find($id)){
+        if(!$side = Doubt::find($id)){
             return back();
         }
         $side->delete();
