@@ -48,7 +48,7 @@ class SupportController extends Controller
         return view('edit', compact('side'));
     }
 
-    public function update(Doubt $side, Doubt $request,string $id)
+    public function update(DoubtRequest $request, Doubt $side, string $id)
     {
         if(!$side = Doubt::find($id)){
             return back();
