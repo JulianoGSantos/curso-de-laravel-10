@@ -23,7 +23,7 @@ class DoubtRequest extends FormRequest
     {
         return [
                 'subject' => 'required',
-                'description' => 'required'
+                'description' => 'required',
         ];
     }
 }
