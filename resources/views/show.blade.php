@@ -6,6 +6,6 @@
 </ul>
 <form action=" {{ route('supports-destroy', $side->id) }}" method="POST">
     @csrf
-    @method('DELETE')
+    @method('DELETE') 
     <button type="submit">Deletar</button>
 </form>
