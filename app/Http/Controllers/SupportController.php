@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
+use APP\Services\SupportService;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    public function index(Doubt $sub)
+    public function __construct(
+        protected SupportService $service
+    )
     {
-        $subs = $sub->all();
+        
+    }
+    public function index(Request $request)
+    {
+        $subs = $this->service->getAll($request->filter);
 
         return view('index', compact('subs'));
     }
@@ -32,17 +39,17 @@ class SupportController extends Controller
         return redirect('/supports');
     }
 
-    public function show(string|int $id)
+    public function show(string $id)
         {
-        if(!$side = Doubt::find($id)){
+        if(!$side = $this->service->findOne($id)){
             return back();
         }
         return view('show', compact('side'));
     }
 
-    public function edit(Doubt $side, string|int $id)
+    public function edit(string $id)
     {
-        if(!$side = Doubt::find($id)){
+        if(!$side = $this->service->findOne($id)){
             return back();
         }
         return view('edit', compact('side'));
@@ -59,12 +66,10 @@ class SupportController extends Controller
 
         return redirect()->route('supports-index');
     }
-    public function destroy(Doubt $side, string|int $id)
+    
+    public function destroy(string $id)
     {
-        if(!$side = Doubt::find($id)){
-            return back();
-        }
-        $side->delete();
+        $this->service->delete($id);
 
         return redirect()->route('supports-index');
     }
