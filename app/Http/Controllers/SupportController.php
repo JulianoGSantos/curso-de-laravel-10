@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateSupportDTO;
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
 use APP\Services\SupportService;
@@ -29,12 +30,9 @@ class SupportController extends Controller
     public function store(DoubtRequest $request) 
         {
 
-        $side = new Doubt();
-
-        $side->subject = $request->subject;
-        $side->description = $request->description;
-
-        $side->save();
+        $this->service->new(
+            CreateSupportDTO::makeFromRequest($request)
+        );
 
         return redirect('/supports');
     }
