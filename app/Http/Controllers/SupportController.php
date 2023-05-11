@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
 use APP\Services\SupportService;
@@ -13,9 +14,8 @@ class SupportController extends Controller
     public function __construct(
         protected SupportService $service
     )
-    {
-        
-    }
+    {}
+
     public function index(Request $request)
     {
         $subs = $this->service->getAll($request->filter);
@@ -55,13 +55,13 @@ class SupportController extends Controller
 
     public function update(DoubtRequest $request, Doubt $side, string $id)
     {
-        if(!$side = Doubt::find($id)){
+        $this->service->update(
+            UpdateSupportDTO::makeFromRequest($request)
+        );
+        if(!$side){
             return back();
         }
-        $side->update($request->only([
-            'subject','description'
-        ]));
-
+        
         return redirect()->route('supports-index');
     }
     
