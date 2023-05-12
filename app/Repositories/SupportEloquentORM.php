@@ -1,5 +1,7 @@
 <?php
 
+use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
 use App\Models\Doubt;
 use App\Repositories\SupportRepositoryInterface;
 
@@ -9,25 +11,50 @@ class SupportEloquentORM implements SupportRepositoryInterface
         protected Doubt $model
     ){}
 
-    public function getAll(string $filter = null): array;
+    public function getAll(string $filter = null): array
     {
-         return $this->model->paginate()->toArray();
+         return $this->model
+         ->where(function ($query) use ($filter){
+            if($filter){
+                $query->where('subject', $filter);
+                $query->orwhere('body', 'like', "%{$filter}%");
+            }
+         })
+         ->all()
+         ->toArray();
     }
-    
-    public function findOne(string $id): stdClass|null;
+    public function findOne(string $id): stdClass|null
     {
-         
+         $support = $this->model->find($id);
+         if(!$support){
+            return null;
+         }
+
+         return (object) $support->toArray();
     }
-    public function delete(string $id): void;
+
+    public function delete(string $id): void
     {
-         
+         $this->model->findOrFail($id)->delete();
     }
-    public function new(CreateSupportDTO $dto): stdClass;
+
+    public function new(CreateSupportDTO $dto): stdClass
     {
-         
+        $support = $this->model->create(
+            (array) $dto
+         );
     }
-    public function update(UpdateSupportDTO $dto): stdClass|null;
+
+    public function update(UpdateSupportDTO $dto): stdClass|null
     {
-         
+        if(!$support = $this->model->find($dto->id)){
+            return null;
+        }
+
+        $support->update(
+            (array) $dto
+        );
+
+        return (object) $support->toArray();
     }
 }
