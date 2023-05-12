@@ -6,7 +6,7 @@ use App\DTO\CreateSupportDTO;
 use App\DTO\UpdateSupportDTO;
 use App\Http\Requests\DoubtRequest;
 use App\Models\Doubt;
-use APP\Services\SupportService;
+use App\Services\SupportService;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
@@ -19,7 +19,6 @@ class SupportController extends Controller
     public function index(Request $request)
     {
         $subs = $this->service->getAll($request->filter);
-dd($subs);
         return view('index', compact('subs'));
     }
 
