@@ -1,9 +1,12 @@
 <?php
 
+namespace App\Repositories;
+
 use App\DTO\CreateSupportDTO;
 use App\DTO\UpdateSupportDTO;
 use App\Models\Doubt;
 use App\Repositories\SupportRepositoryInterface;
+use stdClass;
 
 class SupportEloquentORM implements SupportRepositoryInterface
 {
@@ -20,10 +23,10 @@ class SupportEloquentORM implements SupportRepositoryInterface
                 $query->orwhere('body', 'like', "%{$filter}%");
             }
          })
-         ->all()
+         ->get()
          ->toArray();
     }
-    public function findOne(string $id): stdClass|null
+    public function findOne(string $id): stdClass
     {
          $support = $this->model->find($id);
          if(!$support){
@@ -43,6 +46,8 @@ class SupportEloquentORM implements SupportRepositoryInterface
         $support = $this->model->create(
             (array) $dto
          );
+
+         return (object) $support->toArray();
     }
 
     public function update(UpdateSupportDTO $dto): stdClass|null

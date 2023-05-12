@@ -19,7 +19,7 @@ class SupportController extends Controller
     public function index(Request $request)
     {
         $subs = $this->service->getAll($request->filter);
-
+dd($subs);
         return view('index', compact('subs'));
     }
 
