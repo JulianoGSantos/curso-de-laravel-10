@@ -6,7 +6,7 @@ use App\DTO\CreateSupportDTO;
 use App\DTO\UpdateSupportDTO;
 use stdClass;
 
-interface SupportRepositoryInterface
+interface SupportRepositoryInterface 
 {
     public function getAll(string $filter = null): array;
     public function findOne(string $id): stdClass|null;

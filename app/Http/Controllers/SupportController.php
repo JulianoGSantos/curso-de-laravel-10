@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class SupportController extends Controller
 {
     public function __construct(
-        protected SupportService $service
+        protected SupportService $service 
     )
     {}
 
