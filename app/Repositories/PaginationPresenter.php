@@ -6,10 +6,14 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class PaginationPresenter implements PaginationInterface
 {
+    private array $items;
+
     public function __construct(
-        protected LengthAwarePaginator $paginator
+        protected LengthAwarePaginator $paginator,
     )
-    {}
+    {
+        $this->items = $this->resolveItems($this->paginator->items());
+    }
 
     public function items(): array
     {
@@ -28,7 +32,7 @@ class PaginationPresenter implements PaginationInterface
 
     public function isLastPage(): bool
     {
-
+        return $this->paginator->currentPage() === $this->paginator->isLastPage();
     }
 
     public function currentPage(): int
@@ -38,12 +42,12 @@ class PaginationPresenter implements PaginationInterface
 
     public function getNumberNextPage(): int
     {
-
+        return $this->paginator->currentPage() + 1;
     }
 
     public function getNumberPreviousPage(): int
     {
-
+        return $this->paginator->currentPage() - 1;
     }
 
 }
