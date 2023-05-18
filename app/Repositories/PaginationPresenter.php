@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use stdClass;
 
 class PaginationPresenter implements PaginationInterface
 {
@@ -17,7 +18,7 @@ class PaginationPresenter implements PaginationInterface
 
     public function items(): array
     {
-
+        return $this->items;
     }
 
     public function total(): int
@@ -48,6 +49,19 @@ class PaginationPresenter implements PaginationInterface
     public function getNumberPreviousPage(): int
     {
         return $this->paginator->currentPage() - 1;
+    }
+
+    private function resolveItems(array $items): array
+    {
+        $response = [];
+        foreach($items as $item) {
+            $stdClassObject = new stdClass;
+            foreach($item->toArray() as $key => $value) {
+                $stdClassObject->{$key} = $value;
+            }
+            array_push($response, $stdClassObject);
+        }
+        return $response;
     }
 
 }
